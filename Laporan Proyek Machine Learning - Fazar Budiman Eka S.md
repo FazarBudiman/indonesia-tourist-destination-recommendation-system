@@ -28,6 +28,12 @@ Adapun tujuan dari proyek ini adalah sebagai berikut:
 Dataset yang digunakan berjudul **Indonesia Tourism Destination**. Dataset ini berisi daftar wisata yang tersebar di 5 kota besar Indonesia, kota tersebut meliputi Jakarta, Yogyakarta, Semarang, Bandung dan Surabaya. Adapun beberapa detail informasinya sebagai berikut:
 - Tautan dataset : [Indonesia Tourism Destination](https://www.kaggle.com/datasets/aprabowo/indonesia-tourism-destination)
 - Dataset ini terdiri dari 4 file, yaitu tourism_with_id.csv, user.csv, tourism_rating.csv dan package_tourism.
+- Adapun jumlah data dari setiap file sebagai berikut:
+    - tourism_with_id.csv terdiri dari 437 baris dan 10 kolom.
+    - user.csv terdiri dari 300 baris dan 3 kolom.
+    - tourism_ratings.csv terdiri dari 10.000 baris dan 3 kolom.
+    - package_tourism.csv terdiri dari 100 baris dan 7 kolom.
+- Kondisi pada dataset ini khususnya pada file package_tourism.csv terdapat banyak missing value, namun dalam implementasinya file tersebut tidak digunakan. Selain itu dalam keseluruhan datasetnya tidak ada data duplikat.
 - Adapun variabel dalam file tourism_with_id.csv meliputi:
     -  Place_Id: Merupakan id dari setiap destinasi.
     -  Place_Name: Merupakan nama dari setiap destinasi.
@@ -61,7 +67,8 @@ Pada proyek ini hanya menggunakan 2 file dari dataset tersebut yaitu tourism_wit
 - place_rating.csv
     Dengan menggunakan fungsi `ratings.describe()` didapat informasi bahwa jumlah rating yang diberikan dari 300 wisatawan kepada 437 destinasi berjumlah 10.000. Adapun rating yang diberikan memiliki skala 1-5. Artinya seluruh wisatawan telah memiliki data historis begitu pun destinasi telah mendapatkan interaksi dari wisatawan.
 - tourism_with_id.csv
-    ![Sebaran Destinasi](https://i.imgur.com/5ygkpI8.png)
+  ![sebaran_destinasi (1)](https://github.com/user-attachments/assets/6788f508-c250-476f-b546-45268e89e39d)
+  
     Berdasarkan grafik diatas terlihat bahwa sebaran di masing-masing kota tidak seimbang lebih banyak destinasinya di kota Yogyakarta dan Bandung dibanding kota lainnya. Begitupun jenis kategorinya banyak di kategori Taman Hiburan, Budaya dan Cagar Alam tapi sedikit di kategori Bahari, Tempat Ibadah dan Pusat Perbelanjaan.
     
 
@@ -153,7 +160,10 @@ Adapun hasil dari metrik evaluasinya adalah sebagai berikut:
 | Slope One      | 1.531999  | 1.285102  | 0.366667     | 0.892593  |
 | NMF            | 1.514674  | 1.2792    | 0.369333     | 0.901082  |
 | Co-Clustering  | 1.4394    | 1.230725  | 0.367667     | 0.893437  |
+
 Berdasarkan hasil evaluasi, meskipun NMF (Non-negative Matrix Factorization) unggul dalam RMSE (1.514674) dan MAE (1.2792), Co-Clustering menunjukkan kinerja terbaik dalam Recall@10 dengan nilai 0.893437, sedikit lebih tinggi dari NMF yang memiliki 0.901082. Dalam Precision@10, NMF sedikit lebih unggul dengan nilai 0.369333, sedangkan Co-Clustering memperoleh 0.367667. Namun,  tujuan utama dalam sistem rekomendasi adalah memberikan rekomendasi yang **lebih relevan** dalam 10 rekomendasi teratas, maka dipastikan **Co-Clustering** adalah algoritma yang lebih optimal, karena memiliki nilai Recall@10 yang lebih tinggi. Sehingga, Co-Clustering dapat dianggap sebagai algoritma yang lebih baik dalam konteks ini.
+
+Hasil ini secara langsung menjawab pertanyaan yang diajukan dalam Business Understanding. Pertama, sistem rekomendasi berbasis collaborative filtering berhasil dibangun menggunakan library Surprise dan diuji dengan tiga algoritma berbeda, yaitu Slope One, NMF, dan Co-Clustering. Kedua, melalui analisis hasil evaluasi, algoritma **Co-Clustering** diidentifikasi sebagai pilihan terbaik untuk kebutuhan sistem, menjawab pertanyaan mengenai algoritma yang paling optimal. Selain itu, solusi yang telah dirancang juga terlaksana dengan baik yaitu penerapan Grid Search untuk tuning parameter model. Dengan demikian, seluruh tujuan dan perumusan masalah yang telah ditetapkan pada tahap awal proyek ini dapat disimpulkan telah tercapai dan terjawab dengan baik melalui implementasi dan evaluasi yang dilakukan.
 
 ## Referensi
 - [1] https://kemenparekraf.go.id/direktori-statistik/statistik-kunjungan-wisatawan-mancanegara-bulan-januari-2024
